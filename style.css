@@ -1,0 +1,171 @@
+/* ===== 기본 설정 ===== */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #777777;
+  --accent: #111111;
+  --max-width: 1080px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  word-break: keep-all; /* 한글 단어가 중간에 끊기지 않도록 */
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===== 효과 3: 상단 스크롤 진행률 프로그래스 바 ===== */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;                 /* 얇은 두께 */
+  background: var(--accent);
+  transform: scaleX(0);        /* JS에서 0 ~ 1 사이 값으로 늘려줌 */
+  transform-origin: left center;
+  z-index: 1000;
+}
+
+/* ===== 히어로 ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;            /* 패럴랙스로 움직이는 배경이 밖으로 보이지 않게 */
+  color: #ffffff;
+}
+
+/* 효과 2: 패럴랙스 배경
+   - 위아래로 여유 있게 키워두고(-15%), JS에서 translateY로 천천히 이동시킴 */
+.hero-bg {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* 배경 위 글자가 잘 읽히도록 어두운 막 */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.hero-text {
+  margin-top: 24px;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* ===== 섹션 공통 ===== */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 160px 24px;         /* 넉넉한 여백 */
+}
+
+.section-text {
+  max-width: 560px;
+  margin-bottom: 56px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.section-desc {
+  margin-top: 20px;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  color: var(--muted);
+}
+
+.section-image {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.section-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* ===== 효과 1: 아래에서 위로 페이드인 =====
+   - 처음에는 투명하고 40px 아래에 위치
+   - 화면에 들어오면 JS가 .is-visible 클래스를 붙여 제자리로 올라오며 나타남 */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== 반응형: 모바일 ===== */
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px;
+  }
+
+  .section-text {
+    margin-bottom: 36px;
+  }
+
+  .section-image img {
+    aspect-ratio: 4 / 3;       /* 모바일에서는 이미지를 조금 더 세로로 */
+  }
+}
+
+/* 움직임 줄이기 설정을 켠 사용자에게는 애니메이션 없이 바로 표시 */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
