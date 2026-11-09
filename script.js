@@ -8,8 +8,8 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
    ========================================================= */
 const fadeItems = document.querySelectorAll(".fade-up");
 
-// 히어로 / 각 섹션 안에서 제목 → 문장 → 이미지 순으로 0.15초씩 지연
-document.querySelectorAll(".hero-inner, .section").forEach((group) => {
+// 히어로 안에서 제목 → 문장 → 버튼 순으로 0.15초씩 지연
+document.querySelectorAll(".hero-inner").forEach((group) => {
   group.querySelectorAll(".fade-up").forEach((item, index) => {
     item.style.transitionDelay = `${index * 0.15}s`;
   });
@@ -39,6 +39,14 @@ fadeItems.forEach((item) => fadeObserver.observe(item));
    ========================================================= */
 const heroBg = document.getElementById("heroBg");
 const progressBar = document.getElementById("progressBar");
+const progress = document.getElementById("progress");
+const topAppBar = document.getElementById("topAppBar");
+const fab = document.getElementById("fab");
+
+// FAB: 맨 위로 이동
+fab.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+});
 
 function updateOnScroll() {
   const scrollY = window.scrollY;
@@ -50,8 +58,13 @@ function updateOnScroll() {
 
   // 효과 3: 전체 스크롤 가능한 길이 대비 현재 위치를 0 ~ 1 비율로 계산
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
-  progressBar.style.transform = `scaleX(${progress})`;
+  const ratio = maxScroll > 0 ? scrollY / maxScroll : 0;
+  progressBar.style.transform = `scaleX(${ratio})`;
+  progress.setAttribute("aria-valuenow", Math.round(ratio * 100));
+
+  // Top app bar: 스크롤하면 surface 색으로 전환 / FAB: 히어로를 지나면 표시
+  topAppBar.classList.toggle("is-scrolled", scrollY > 8);
+  fab.classList.toggle("is-visible", scrollY > window.innerHeight * 0.6);
 }
 
 // requestAnimationFrame으로 한 프레임에 한 번만 계산해서 스크롤을 부드럽게 유지
