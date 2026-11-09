@@ -3,125 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
   <title>Quiet Places</title>
 
-  <!-- Material Design 3: Roboto + Noto Sans KR(한글) + Material Symbols -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" />
+  <!-- Pretendard 폰트 (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Top app bar + 스크롤 진행률(Linear progress indicator) -->
-  <header class="md-top-app-bar" id="topAppBar">
-    <span class="md-top-app-bar__title md-title-large">Quiet Places</span>
-    <nav class="md-top-app-bar__nav" aria-label="섹션 이동">
-      <a class="md-text-button md-state md-label-large" href="#forest">숲</a>
-      <a class="md-text-button md-state md-label-large" href="#mountain">산</a>
-      <a class="md-text-button md-state md-label-large" href="#lake">호수</a>
-    </nav>
-    <div class="md-linear-progress" role="progressbar" aria-label="읽기 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
-      <div class="md-linear-progress__bar" id="progressBar"></div>
-    </div>
-  </header>
+  <!-- 효과 3: 상단 스크롤 진행률 프로그래스 바 -->
+  <div class="progress-bar" id="progressBar"></div>
 
   <!-- 히어로 -->
-  <section class="hero">
-    <!-- 패럴랙스가 적용되는 히어로 배경 이미지 -->
+  <header class="hero">
+    <!-- 효과 2: 패럴랙스가 적용되는 히어로 배경 이미지 -->
     <div class="hero-bg" id="heroBg"
          style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80');">
     </div>
     <div class="hero-inner">
-      <h1 class="md-display-large fade-up">깃허브에서 수정</h1>
-      <p class="hero-text md-body-large fade-up">
+      <h1 class="hero-title fade-up">Quiet Places</h1>
+      <p class="hero-text fade-up">
         잠시 멈추어 바라보는 풍경들.<br />
         천천히 스크롤하며 조용한 장소를 걸어보세요.
       </p>
-      <div class="hero-actions fade-up">
-        <a class="md-filled-button md-state md-label-large" href="#forest">
-          <span class="material-symbols-rounded" aria-hidden="true">explore</span>
-          둘러보기
-        </a>
-      </div>
     </div>
-  </section>
+  </header>
 
-  <main class="content">
-    <!-- 카드 1 -->
-    <article class="md-card fade-up" id="forest">
-      <figure class="md-card__media">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80"
-             alt="햇살이 비치는 숲" loading="lazy" />
-      </figure>
-      <div class="md-card__content">
-        <span class="md-card__overline md-label-large">
-          <span class="material-symbols-rounded" aria-hidden="true">wb_sunny</span>Morning
-        </span>
-        <h2 class="md-card__title md-headline-medium">아침의 숲</h2>
-        <p class="md-card__desc md-body-large">
+  <main>
+    <!-- 섹션 1 -->
+    <section class="section">
+      <div class="section-text">
+        <h2 class="section-title fade-up">아침의 숲</h2>
+        <p class="section-desc fade-up">
           나뭇잎 사이로 스며드는 첫 햇살.<br />
           고요한 숲은 하루를 가장 부드럽게 시작하게 합니다.
         </p>
-        <div class="md-chip-set">
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">forest</span>숲</span>
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">light_mode</span>햇살</span>
-        </div>
       </div>
-    </article>
-
-    <!-- 카드 2 -->
-    <article class="md-card fade-up" id="mountain">
-      <figure class="md-card__media">
-        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1400&q=80"
-             alt="안개 낀 산의 능선" loading="lazy" />
+      <figure class="section-image fade-up">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80"
+             alt="햇살이 비치는 숲" loading="lazy" />
       </figure>
-      <div class="md-card__content">
-        <span class="md-card__overline md-label-large">
-          <span class="material-symbols-rounded" aria-hidden="true">foggy</span>Mist
-        </span>
-        <h2 class="md-card__title md-headline-medium">안개 낀 산</h2>
-        <p class="md-card__desc md-body-large">
+    </section>
+
+    <!-- 섹션 2 -->
+    <section class="section">
+      <div class="section-text">
+        <h2 class="section-title fade-up">안개 낀 산</h2>
+        <p class="section-desc fade-up">
           멀리 겹겹이 이어지는 능선.<br />
           흐릿한 경계 속에서 오히려 마음이 선명해집니다.
         </p>
-        <div class="md-chip-set">
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">landscape</span>산</span>
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">cloud</span>안개</span>
-        </div>
       </div>
-    </article>
-
-    <!-- 카드 3 -->
-    <article class="md-card fade-up" id="lake">
-      <figure class="md-card__media">
-        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1400&q=80"
-             alt="노을 진 풍경" loading="lazy" />
+      <figure class="section-image fade-up">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1400&q=80"
+             alt="안개 낀 산의 능선" loading="lazy" />
       </figure>
-      <div class="md-card__content">
-        <span class="md-card__overline md-label-large">
-          <span class="material-symbols-rounded" aria-hidden="true">wb_twilight</span>Sunset
-        </span>
-        <h2 class="md-card__title md-headline-medium">해 질 녘 호수</h2>
-        <p class="md-card__desc md-body-large">
+    </section>
+
+    <!-- 섹션 3 -->
+    <section class="section">
+      <div class="section-text">
+        <h2 class="section-title fade-up">해 질 녘 호수</h2>
+        <p class="section-desc fade-up">
           하루의 끝, 물 위로 번지는 노을.<br />
           오늘의 풍경을 천천히 마음에 담아봅니다.
         </p>
-        <div class="md-chip-set">
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">water</span>호수</span>
-          <span class="md-chip md-label-large"><span class="material-symbols-rounded" aria-hidden="true">nights_stay</span>노을</span>
-        </div>
       </div>
-    </article>
+      <figure class="section-image fade-up">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1400&q=80"
+             alt="노을 진 풍경" loading="lazy" />
+      </figure>
+    </section>
   </main>
-
-  <footer class="footer md-body-large">Quiet Places</footer>
-
-  <!-- FAB: 맨 위로 -->
-  <button class="md-fab md-state" id="fab" type="button" aria-label="맨 위로">
-    <span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span>
-  </button>
 
   <script src="script.js"></script>
 </body>
